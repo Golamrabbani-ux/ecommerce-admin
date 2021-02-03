@@ -1,0 +1,19 @@
+.custom-btn{
+    color: #2874f0;
+    font-weight: 500;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 2px;
+    height: 32px;
+    padding: 5px 33px;
+    border: 1px solid #dbdbdb;
+}
+
+/* Sidebar css */
+.sidebar-ul{
+    /* margin: 0px; */
+    padding: 0rem 1rem;
+}
+.sidebar-ul .sidebar-li{
+    list-style: none;
+}

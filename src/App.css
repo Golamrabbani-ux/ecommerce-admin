@@ -1,0 +1,19 @@
+label{
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+.custom-btn-css{
+    padding: 3px 10px !important;
+}
+.custom-btn-css:focus{
+    padding: 3px 10px !important;
+}
+.custom-btn-css:active{
+    padding: 3px 10px !important;
+}
+.input-error{
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PScxMicgZmlsbD0nbm9uZScgc3Ryb2tlPScjRjY0RTYwJyB2aWV3Qm94PScwIDAgMTIgMTInPjxjaXJjbGUgY3g9JzYnIGN5PSc2JyByPSc0LjUnLz48cGF0aCBzdHJva2UtbGluZWpvaW49J3JvdW5kJyBkPSdNNS44IDMuNmguNEw2IDYuNXonLz48Y2lyY2xlIGN4PSc2JyBjeT0nOC4yJyByPScuNicgZmlsbD0nI0Y2NEU2MCcgc3Ryb2tlPSdub25lJy8+PC9zdmc+');
+    background-position: center right;
+    background-repeat: no-repeat;
+    border: 1px solid #f00;
+}
