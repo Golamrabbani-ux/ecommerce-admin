@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import CustomModal from '../../common/CustomModal';
 import Layout from '../../components/Layout/Layout';
 import { addCategories, deleteCategories, getAllCategories, updateCategories } from '../../redux/actions/category.action';
 import CheckboxTree from 'react-checkbox-tree';
 import { IoChevronDownOutline, IoChevronForward, IoCheckboxSharp, IoSquareOutline, IoFolderOpenOutline, IoDocumentsOutline } from "react-icons/io5";
 import '../containers.css';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
+import UpdateCategoriesModal from './UpdateCategoriesModal';
+import AddCategoriesModal from './AddCategoriesModal';
+import DeleteCategoriesModal from './DeleteCategoriesModal';
 
 
 const Categories = () => {
@@ -74,7 +76,7 @@ const Categories = () => {
     }
     // It's call Edit Button
     const handleUpdateCategory = () => {
-        if (checked.length  > 0 || expanded.length > 0) {
+        if (checked.length > 0 || expanded.length > 0) {
             setUpdateCategoryModal(true);
             updateCategory()
         }
@@ -141,17 +143,17 @@ const Categories = () => {
             })
     }
 
-    const handleDeleteCategory = () =>{
-        const expendedIds = expandedArray.map(item => ({_id: item.value}))
-        const checkedIds = checkedArray.map(item => ({_id: item.value}))
-        const idsArray = expendedIds.concat(checkedIds)
-        dispatch(deleteCategories(idsArray))
-        .then(result =>{
-            if(result){
-                setDeleteCategoryModal(false);
-                dispatch(getAllCategories());
-            }
-        })
+    const handleDeleteCategory = () => {
+        const checkedIds = checkedArray.map(item => ({ _id: item.value }))
+        if (checkedIds.length > 0) {
+            dispatch(deleteCategories(checkedIds))
+                .then(result => {
+                    if (result) {
+                        setDeleteCategoryModal(false);
+                        dispatch(getAllCategories());
+                    }
+                })
+        }
     }
 
     return (
@@ -164,27 +166,28 @@ const Categories = () => {
                             <div>
                                 <button
                                     style={{ width: '80px', height: '30px' }}
+                                    className='btn btn-sm btn-primary'
                                     onClick={() => setShow(true)}
                                 >
                                     Add
                                 </button>
                                 <button
-                                    className='mx-2'
+                                    className='mx-2 btn btn-sm btn-primary'
                                     style={{ width: '80px', height: '30px' }}
                                     onClick={() => handleUpdateCategory()}
                                 >
                                     Edit
                                 </button>
                                 <button
-                                    className='mx-2'
+                                    className='btn btn-sm btn-primary'
                                     style={{ width: '80px', height: '30px' }}
                                     onClick={() => {
-                                        if (checked.length  > 0 || expanded.length > 0) {
+                                        if (checked.length > 0) {
                                             setDeleteCategoryModal(true);
                                             updateCategory()
                                         }
                                         else {
-                                            alert("Please select expanded or checked!")
+                                            alert("Please select checked!")
                                         }
                                     }}
                                 >
@@ -213,204 +216,36 @@ const Categories = () => {
                         />
                     </Col>
                 </Row>
-
-                {/* Add Category Modal  */}
-                <CustomModal
+                <AddCategoriesModal
                     show={show}
                     handleClose={handleClose}
                     title="Add new category"
-                >
-                    <form onSubmit={handleSubmit}>
-                        <Row>
-                            <Col sm={12}>
-                                <label>category name</label>
-                                <input
-                                    onChange={(e) => setCategoryName(e.target.value)}
-                                    name='name'
-                                    type='text'
-                                    placeholder='category name'
-                                    className='form-control'
-                                />
-                            </Col>
-                            <Col sm={12} className='my-2'>
-                                <label>parent name</label>
-                                <select
-                                    onChange={(e) => setParentCategoryId(e.target.value)}
-                                    className='form-control'
-                                >
-                                    <option>Select Parent</option>
-                                    {
-                                        renderValueLabel(category.categories).map((option) =>
-                                            <option
-                                                key={option.value}
-                                                value={option.value}
-                                            >{option.name}</option>
-                                        )
-                                    }
-                                </select>
-                            </Col>
-                            <Col sm={12}>
-                                <label>category image</label><br />
-                                <input
-                                    onChange={handleCategoryImage}
-                                    name="categoryImage"
-                                    type='file'
-                                />
-                            </Col>
-                            <Col sm={12} className='mt-1'>
-                                <button
-                                    type="submit"
-                                    className='btn btn-primary'
-                                >
-                                    Submit
-                                </button>
-                            </Col>
-                        </Row>
-                    </form>
-                </CustomModal>
-                {/* Edit or Update Category Modal */}
-                <CustomModal
+                    categoryName={categoryName}
+                    handleSubmit={handleSubmit}
+                    setCategoryName={setCategoryName}
+                    setParentCategoryId={setParentCategoryId}
+                    renderValueLabel={renderValueLabel(category.categories)}
+                    handleCategoryImage={handleCategoryImage}
+                />
+                <UpdateCategoriesModal
                     show={updateCategoryModal}
                     handleClose={handleClose}
                     title="Update Category"
                     size="xl"
-                >
-                    <form onSubmit={handleUpdateCategorySubmit}>
-                        <h6>Expaned list</h6>
-                        {
-                            expandedArray.length > 0 &&
-                            expandedArray.map((item, index) =>
-                                <div key={index}>
-                                    <Row>
-                                        <Col lg={4} md={12}>
-                                            <input
-                                                value={item.name}
-                                                name='name'
-                                                type='text'
-                                                placeholder='category name'
-                                                className='my-1 form-control'
-                                                onChange={(e) => handleEditInput("name", e.target.value, index, "expanded")}
-                                            />
-                                        </Col>
-                                        <Col lg={4} md={12}>
-                                            <select
-                                                defaultValue={item.parentId}
-                                                onChange={(e) => handleEditInput("parentId", e.target.value, index, "expanded")}
-                                                className='my-1 form-control'
-                                            >
-                                                <option>Select Parent</option>
-                                                {
-                                                    renderValueLabel(category.categories).map((option) =>
-                                                        <option
-                                                            key={option.value}
-                                                            value={option.value}
-                                                        >{option.name}</option>
-                                                    )
-                                                }
-                                            </select>
-                                        </Col>
-                                        <Col lg={4} md={12}>
-                                            <select
-                                                className='my-1 form-control'
-                                            >
-                                                <option>Select type</option>
-                                                <option value={"store"}>Store</option>
-                                                <option value={"product"}>Product</option>
-                                                <option value={'brand'}>Brand</option>
-                                            </select>
-                                        </Col>
-                                    </Row>
-                                </div>
-                            )
-                        }
-                        <h6>Checked list</h6>
-                        {
-                            checkedArray.length > 0 &&
-                            checkedArray.map((item, index) =>
-                                <div key={index}>
-                                    <Row>
-                                        <Col lg={4} md={12}>
-                                            <input
-                                                value={item.name}
-                                                name='name'
-                                                type='text'
-                                                placeholder='category name'
-                                                className='my-1 form-control'
-                                                onChange={(e) => handleEditInput("name", e.target.value, index, "checked")}
-                                            />
-                                        </Col>
-                                        <Col lg={4} md={12}>
-                                            <select
-                                                onChange={(e) => handleEditInput("parentId", e.target.value, index, "checked")}
-                                                value={item.parentId}
-                                                className='my-1 form-control'
-                                            >
-                                                <option>Select Parent</option>
-                                                {
-                                                    renderValueLabel(category.categories).map((option) =>
-                                                        <option
-                                                            key={option.value}
-                                                            value={option.value}
-                                                        >{option.name}</option>
-                                                    )
-                                                }
-                                            </select>
-                                        </Col>
-                                        <Col lg={4} md={12}>
-                                            <select
-                                                className='my-1 form-control'
-                                            >
-                                                <option>Select type</option>
-                                                <option value={"store"}>Store</option>
-                                                <option value={"product"}>Product</option>
-                                                <option value={'brand'}>Brand</option>
-                                            </select>
-                                        </Col>
-                                    </Row>
-                                </div>
-                            )
-                        }
-                        <button
-                            className='btn btn-primary'
-                            type='submit'
-                        >
-                            Submit
-                        </button>
-                    </form>
-                </CustomModal>
-                {/* Delete Category Modal */}
-                <CustomModal
+                    expandedArray={expandedArray}
+                    checkedArray={checkedArray}
+                    handleUpdateCategorySubmit={handleUpdateCategorySubmit}
+                    handleEditInput={handleEditInput}
+                    renderValueLabel={renderValueLabel(category.categories)}
+                />
+                <DeleteCategoriesModal
                     show={deleteCategoryModal}
                     handleClose={handleClose}
-                    title="Confirm"
-                    size="md"
-                    buttons={[
-                        {
-                            label: "no",
-                            color: "primary",
-                            onClick: () => {
-                                setDeleteCategoryModal(false)
-                            }
-                        },
-                        {
-                            label: "yes",
-                            color: "danger",
-                            onClick: () => {
-                                handleDeleteCategory()
-                            }
-                        }
-                    ]}
-                >
-                    Are you sure delete this category <br />
-                    <p>Expanded List</p>
-                    {
-                        expandedArray.map(item => <li>{item.name}</li>)
-                    }
-                    <p>Checked List</p>
-                    {
-                        checkedArray.map(item => <li>{item.name}</li>)
-                    }
-                </CustomModal>
+                    setDeleteCategoryModal={setDeleteCategoryModal}
+                    handleDeleteCategory={handleDeleteCategory}
+                    expandedArray={expandedArray}
+                    checkedArray={checkedArray}
+                />
             </Container>
         </Layout>
     )

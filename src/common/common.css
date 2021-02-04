@@ -1,0 +1,13 @@
+/* Custom modal Csss */
+.modal-header{
+    align-items: center;
+    padding: .5rem 1rem;
+    background-color: #F1F1F1;
+}
+.modal-header .close{
+    margin: 0rem 0;
+    padding: .5rem 1rem;
+}
+.modal-footer{
+    padding:0 1rem;
+}

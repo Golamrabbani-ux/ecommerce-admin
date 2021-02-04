@@ -1,5 +1,6 @@
 import { Modal, Button } from 'react-bootstrap';
 import React from 'react';
+import './common.css';
 
 const CustomModal = (props) => {
     return (
@@ -24,7 +25,12 @@ const CustomModal = (props) => {
                     {
                         props?.buttons?.map((btn, index) =>
                             <div ke={index}>
-                                <Button onClick={btn.onClick} variant={btn.color}>
+                                <Button 
+                                    onClick={btn.onClick}
+                                    variant={btn.color} 
+                                    style={{ width: '50px', height: '30px' }}
+                                    className='btn btn-sm'
+                                >
                                     {btn.label}
                                 </Button>
                             </div>
