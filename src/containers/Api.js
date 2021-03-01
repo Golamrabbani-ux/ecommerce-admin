@@ -5,6 +5,7 @@ export const getCategoryDDl = async(setter) =>{
     try {
         const res = await axiosInstance.get('/category/categoryOption');
         if(res.status === 200){
+            // console.log(res?.data);
             // eslint-disable-next-line array-callback-return
             const categoryDDl = res?.data?.cat?.map(cat => {
                 return {

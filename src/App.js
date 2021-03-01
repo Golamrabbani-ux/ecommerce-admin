@@ -13,6 +13,9 @@ import Orders from './containers/Orders/Orders';
 import Products from './containers/Products/Products';
 import Categories from './containers/Categories/Categories';
 import { getInitialData } from './redux/actions/initalData.action';
+import NewPage from './containers/NewPage/NewPage';
+import { getAllCategories } from './redux/actions/category.action';
+import HomePageBanner from './containers/HomePageBanner/HomePageBanner';
 
 
 function App() {
@@ -25,15 +28,19 @@ function App() {
       dispatch(isUserLoggedIn())
     }
     dispatch(getInitialData())
+    dispatch(getAllCategories())
   }, [auth.authenticate, dispatch])
+
   
   return (
     <Router>
       <Switch>
         <PrivateRoute exact path='/' component={Home} />
+        <PrivateRoute path='/page' component={NewPage} />
         <PrivateRoute path='/products' component={Products} />
         <PrivateRoute path='/orders' component={Orders} />
         <PrivateRoute path='/categories' component={Categories} />
+        <PrivateRoute path='/home-page/banner' component={HomePageBanner} />
         
 
         <Route path='/signin' component={Signin} />

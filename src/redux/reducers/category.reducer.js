@@ -1,4 +1,4 @@
-import { add_categories_request, add_categories_request_failed, add_categories_request_success, all_categories_request, all_categories_request_failed, all_categories_request_success } from "../type";
+import { add_categories_request, add_categories_request_failed, add_categories_request_success, all_categories_request, all_categories_request_failed, all_categories_request_success, update_categories_request, update_categories_request_failed, update_categories_request_success } from "../type";
 
 const initState = {
     loading: false,
@@ -6,7 +6,7 @@ const initState = {
     error: ''
 }
 
-export const categoryReducer = (state = initState, action) =>{
+export const categoryReducer = (state = initState, action) => {
     switch (action.type) {
         case all_categories_request:
             state = {
@@ -29,7 +29,7 @@ export const categoryReducer = (state = initState, action) =>{
                 categoties: [],
             }
             return state;
-        case add_categories_request: 
+        case add_categories_request:
             state = {
                 ...state,
                 loading: true
@@ -39,13 +39,32 @@ export const categoryReducer = (state = initState, action) =>{
             state = {
                 ...state,
                 loading: false,
-                categories: {...state.categories, categories: action.payload}
+                categories: { ...state.categories, categories: action.payload }
             }
             return state;
         case add_categories_request_failed:
             state = {
                 ...state,
                 loading: false
+            }
+            return state;
+        case update_categories_request:
+            state = {
+                ...state,
+                loading: true
+            }
+            return state;
+        case update_categories_request_success:
+            state = {
+                ...state,
+                loading: false
+            }
+            return state;
+        case update_categories_request_failed:
+            state = {
+                ...state,
+                loading: false,
+                error: action.payload
             }
             return state;
         default:

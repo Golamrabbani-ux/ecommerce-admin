@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header';
 import { Container, Row, Col } from 'react-bootstrap';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../components.css';
 
 
@@ -19,6 +19,17 @@ const Layout = (props) => {
                                         <NavLink
                                             to='/'>
                                             Home
+                                        </NavLink>
+                                    </li>
+                                    <li className='sidebar-li'>
+                                        <NavLink 
+                                            activeStyle={{
+                                                fontWeight: "bold",
+                                                color: "red",
+                                                textDecoration: 'underline'
+                                            }} 
+                                            to='/page'>
+                                            Page
                                         </NavLink>
                                     </li>
                                     <li className='sidebar-li'>
@@ -52,6 +63,17 @@ const Layout = (props) => {
                                             }} 
                                             to='/orders'>
                                             Orders
+                                        </NavLink>
+                                    </li>
+                                    <li className='sidebar-li'>
+                                        <NavLink 
+                                            activeStyle={{
+                                                fontWeight: "bold",
+                                                color: "red",
+                                                textDecoration: 'underline'
+                                            }} 
+                                            to='/home-page/banner'>
+                                            Home Page Banner
                                         </NavLink>
                                     </li>
                                 </ul>

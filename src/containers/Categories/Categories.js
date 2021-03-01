@@ -10,6 +10,7 @@ import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 import UpdateCategoriesModal from './UpdateCategoriesModal';
 import AddCategoriesModal from './AddCategoriesModal';
 import DeleteCategoriesModal from './DeleteCategoriesModal';
+import { toast } from 'react-toastify';
 
 
 const Categories = () => {
@@ -47,7 +48,12 @@ const Categories = () => {
     // Select Option With Value and Label
     const renderValueLabel = (categories, options = []) => {
         for (let category of categories) {
-            options.push({ value: category._id, name: category?.name, parentId: category.parentId })
+            options.push({ 
+                value: category._id, 
+                name: category?.name, 
+                parentId: category.parentId,
+                type: category.type
+            })
             if (category.children.length > 0) {
                 renderValueLabel(category.children, options)
             }
@@ -81,7 +87,7 @@ const Categories = () => {
             updateCategory()
         }
         else {
-            alert("Please select expanded or checked!")
+            (toast.warning("Please select expanded or checked!", {position: 'bottom-center'}))
         }
     }
     // Update Category 
@@ -150,6 +156,7 @@ const Categories = () => {
                 .then(result => {
                     if (result) {
                         setDeleteCategoryModal(false);
+                        toast.success("Categories succesfully delete", {position: 'bottom-center'})
                         dispatch(getAllCategories());
                     }
                 })
@@ -187,7 +194,7 @@ const Categories = () => {
                                             updateCategory()
                                         }
                                         else {
-                                            alert("Please select checked!")
+                                            toast.warn("Please select checked!", {position: "bottom-center"})
                                         }
                                     }}
                                 >

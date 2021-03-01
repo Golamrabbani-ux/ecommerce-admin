@@ -22,6 +22,20 @@ const Products = () => {
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [productPictures, setProductPictures] = useState([]);
+    const [ram, setRam] = useState('');
+    const [rom, setRom] = useState('');
+    const [sdCard, setSdCard] = useState('');
+    const [batter, setBatter] = useState('');
+    const [processor, setProcessor] = useState('')
+    const [warranty, setWarranty] = useState('');
+    const [seller, setSeller] = useState('');
+    const [display, setDisplay] = useState('');
+    const [appSupported, setAppSupported] = useState('');
+    const [operatingSupported, setOperatingSupported] = useState('');
+    const [refresrate, setRefresRate] = useState('');
+    const [power, setPower] = useState('');
+    const [nosie, setNoise] = useState('');
+    const [wifiEnabled, setWifiEnabled] = useState('');
 
 
     // DDl data load from api
@@ -38,6 +52,25 @@ const Products = () => {
         form.append("quantity", quantity)
         form.append("description", description)
         form.append("category", category)
+        form.append("ram", ram);
+        form.append("rom", rom);
+        form.append("sdCard", sdCard);
+        form.append("battery", batter);
+        form.append("processor", processor);
+        form.append("warranty", warranty);
+        form.append("seller", seller);
+        form.append("display", display);
+        form.append("appSupported", appSupported);
+        form.append("operatingSupported", operatingSupported);
+        form.append("refresrate", refresrate);
+        form.append("power", power);
+        form.append("nosie", nosie);
+        form.append("wifiEnabled", wifiEnabled);
+        // console.log(productName, price, quantity, description, 
+        //     category, ram, rom, sdCard, batter, processor,warranty,
+        //     seller, display, appSupported, operatingSupported, refresrate,
+        //     power, nosie, wifiEnabled
+        //     );
 
         if (productPictures.length > 0) {
             for (let pic of productPictures) {
@@ -65,48 +98,169 @@ const Products = () => {
             >
                 <form onSubmit={handleSubmit}>
                     <Row>
-                        <Col sm={12}>
-                            <label>product name</label>
+                        <Col sm={6}>
                             <input
                                 type='text'
-                                className='form-control'
+                                className='form-control mb-2'
                                 name='productName'
                                 placeholder='product name'
                                 onChange={(e) => setProductName(e.target.value)}
                             />
                         </Col>
-                        <Col sm={12}>
-                            <label>product price</label>
+                        <Col sm={6}>
                             <input
                                 type='number'
-                                className='form-control'
+                                className='form-control mb-2'
                                 name='price'
                                 placeholder='product price'
                                 onChange={(e) => setPrice(e.target.value)}
                             />
                         </Col>
-                        <Col sm={12}>
-                            <label>product qunatity</label>
+                        <Col sm={6}>
                             <input
                                 type='number'
-                                className='form-control'
+                                className='form-control mb-2'
                                 name='price'
                                 placeholder='product qunatity'
                                 onChange={(e) => setQuantity(e.target.value)}
                             />
                         </Col>
-                        <Col sm={12}>
-                            <label>description</label>
+                        <Col sm={6}>
                             <input
                                 type='text'
-                                className='form-control'
+                                className='form-control mb-2'
+                                name='ram'
+                                placeholder='Ram'
+                                onChange={(e) => setRam(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='rom'
+                                placeholder='Rom'
+                                onChange={(e) => setRom(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='sdCard'
+                                placeholder='Sd card supported'
+                                onChange={(e) => setSdCard(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='battery'
+                                placeholder='Battery'
+                                onChange={(e) => setBatter(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='processor'
+                                placeholder='Processor'
+                                onChange={(e) => setProcessor(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='warranty'
+                                placeholder='Warranty'
+                                onChange={(e) => setWarranty(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='seller'
+                                placeholder='Seller'
+                                onChange={(e) => setSeller(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='display'
+                                placeholder='Display Size or Resulition'
+                                onChange={(e) => setDisplay(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='appSupported'
+                                placeholder='App Supported'
+                                onChange={(e) => setAppSupported(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='operatingSystem'
+                                placeholder='Operating Syatem'
+                                onChange={(e) => setOperatingSupported(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='refreshrate'
+                                placeholder='Refres Rate'
+                                onChange={(e) => setRefresRate(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='powrer'
+                                placeholder='Power'
+                                onChange={(e) => setPower(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='noiseLevel'
+                                placeholder='Noise Level'
+                                onChange={(e) => setNoise(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
+                                name='wifiEnabled'
+                                placeholder='Noise Level'
+                                onChange={(e) => setWifiEnabled(e.target.value)}
+                            />
+                        </Col>
+                        <Col sm={6}>
+                            <input
+                                type='text'
+                                className='form-control mb-2'
                                 name='description'
                                 placeholder='description'
                                 onChange={(e) => setDescription(e.target.value)}
                             />
                         </Col>
-                        <Col sm={12} className='my-2'>
-                            <label>category</label>
+                        <Col sm={6} className='my-2'>
                             <Select
                                 name='category'
                                 onChange={(valueOption) => {
@@ -116,10 +270,10 @@ const Products = () => {
                                 placeholder='select category'
                             />
                         </Col>
-                        <Col sm={12}>
-                            <label>product image</label><br />
+                        <Col sm={6}>
                             {productPictures.map((pdImg, index) => <div key={index}>{pdImg?.name}</div>)}
                             <input
+                                className='mt-3'
                                 name='productPictures'
                                 type='file'
                                 onChange={(e) => {
@@ -131,7 +285,7 @@ const Products = () => {
                             />
                             <br />
                         </Col>
-                        <Col sm={12} className='mt-1'>
+                        <Col sm={6} className='mt-1'>
                             <button
                                 disabled={
                                     !productName || !price || !quantity || !category || !productPictures || !description
@@ -245,7 +399,7 @@ const Products = () => {
                                                         setProductDetails(product)
                                                     }}
                                                     key={product._id}
-                                                    style={{cursor: 'pointer'}}
+                                                    style={{ cursor: 'pointer' }}
                                                 >
                                                     <td className='table-serial'>{index + 1}</td>
                                                     <td>{product?.productName}</td>

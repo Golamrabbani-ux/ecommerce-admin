@@ -4,6 +4,8 @@ import { signupReducer } from "./signup.reducer";
 import { categoryReducer } from "./category.reducer";
 import { productReducer } from "./product.reducer";
 import { initalDataReducer } from "./initialData.reducer";
+import pageReducer from "./page.reducer";
+import bannerReducer from "./homePageBanner.reducer";
 
 
 const rootReducer = combineReducers({
@@ -11,7 +13,9 @@ const rootReducer = combineReducers({
     user: signupReducer,
     category: categoryReducer,
     product: productReducer,
-    initialData: initalDataReducer
+    initialData: initalDataReducer,
+    pageData: pageReducer,
+    banner: bannerReducer
 })
 
 export default rootReducer;

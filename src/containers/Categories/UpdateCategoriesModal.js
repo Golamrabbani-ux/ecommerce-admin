@@ -57,12 +57,14 @@ const UpdateCategoriesModal = (props) => {
                                 </Col>
                                 <Col lg={4} md={12}>
                                     <select
+                                        onChange={(e) => handleEditInput("type", e.target.value, index, "expanded")}
+                                        value={item.type}
                                         className='my-1 form-control form-control-sm'
                                     >
                                         <option>Select type</option>
                                         <option value={"store"}>Store</option>
                                         <option value={"product"}>Product</option>
-                                        <option value={'brand'}>Brand</option>
+                                        <option value={'page'}>Page</option>
                                     </select>
                                 </Col>
                             </Row>
@@ -74,6 +76,7 @@ const UpdateCategoriesModal = (props) => {
                     checkedArray.length > 0 &&
                     checkedArray.map((item, index) =>
                         <div key={index}>
+                            {console.log("type", item)}
                             <Row>
                                 <Col lg={4} md={12}>
                                     <input
@@ -104,12 +107,14 @@ const UpdateCategoriesModal = (props) => {
                                 </Col>
                                 <Col lg={4} md={12}>
                                     <select
+                                        onChange={(e) => handleEditInput("type", e.target.value, index, "checked")}
+                                        value={item.type}
                                         className='my-1 form-control form-control-sm'
                                     >
                                         <option>Select type</option>
                                         <option value={"store"}>Store</option>
                                         <option value={"product"}>Product</option>
-                                        <option value={'brand'}>Brand</option>
+                                        <option value={'page'}>Page</option>
                                     </select>
                                 </Col>
                             </Row>

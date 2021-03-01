@@ -1,6 +1,6 @@
 import { toast } from "react-toastify"
 import axiosInstance from "../../helper/axios"
-import { add_categories_request, add_categories_request_failed, add_categories_request_success, all_categories_request, all_categories_request_failed, all_categories_request_success } from "../type"
+import { add_categories_request, add_categories_request_failed, add_categories_request_success, all_categories_request, all_categories_request_failed, all_categories_request_success, update_categories_request, update_categories_request_failed, update_categories_request_success } from "../type"
 
 export const getAllCategories = () => {
     return async (dispatch) => {
@@ -45,11 +45,20 @@ export const addCategories = (categoties) =>{
 export const updateCategories = (form) =>{
     return async dispatch =>{
         try {
+            dispatch({type: update_categories_request})
             const res = await axiosInstance.post('/category/update', form)
             if(res.status === 200){
+                dispatch({
+                    type: update_categories_request_success,
+                    payload: res.data.updateCategories
+                })
                 return true;
             }
         } catch (error) {
+            dispatch({
+                type: update_categories_request_failed,
+                payload: error.message
+            })
             toast.warning(error.message || "Something warning", {position: "bottom-center",})
         }
     }

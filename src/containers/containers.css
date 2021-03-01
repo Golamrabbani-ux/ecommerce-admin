@@ -39,3 +39,29 @@
     height: 100%;
     /* object-fit: contain; */
 }
+/* Home page banners start */
+.custom-card{
+    width: 75%;
+    background-color: white;
+    color: black;
+    padding: 20px 30px;
+    border-bottom: 1px solid #000;
+}
+.add-btn{
+    border: 0;
+    outline: 0;
+    background-color: white;
+    color: #000;
+}
+.editanddeletbtn{
+    border: 0;
+    outline: 0;
+}
+.editanddeletbtn:hover{
+    background-color: #dee2e6e8;
+}
+.editanddeletbtn:focus{
+    border: none;
+    outline: none;
+}
+/* Home page banners end */

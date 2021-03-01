@@ -22,6 +22,10 @@ export const all_categories_request_failed = "ALL_CATEGORIES_REQUEST_FAILED"
 export const add_categories_request = 'ADD_CATEGORIES_REQUEST';
 export const add_categories_request_success = 'ADD_CATEGORIES_REQUEST_SUCCESS';
 export const add_categories_request_failed = 'ADD_CATEGORIES_REQUEST_FAILED';
+// Update or Edit categories
+export const update_categories_request = "UPDATE_CATEGORIES_REQUEST";
+export const update_categories_request_success = "UPDATE_CATEGORIES_REQUEST_SUCCESS";
+export const update_categories_request_failed = "UPDATE_CATEGORIES_REQUEST_FAILED";
 
 // Products
 //post products
@@ -34,3 +38,16 @@ export const add_product_request_failed = "ADD_PRODUCT_REQUEST_FAILED";
 export const get_initialData_request = "GET_INITIALDATA_REQUEST";
 export const get_initialData_request_success = "GET_INITIALDATA_REQUEST_SUCCESS";
 export const get_initialData_request_failed = "GET_INITIALDATA_REQUEST_SUCCESS_FAILED";
+
+// Page Type
+export const add_page_request = "ADD_PAGE_REQUEST";
+export const add_page_request_success = "ADD_PAGE_REQUEST_SUCCESS";
+export const add_page_request_failed = "ADD_PAGE_REQUEST_FALIED";
+
+// Home page banner type
+export const add_home_page_banner_request = "ADD_HOME_PAGE_BANNER_REQUEST";
+export const add_home_page_banner_success = "ADD_HOME_PAGE_BANNER_SUCCESS";
+export const add_home_page_banner_failed = "ADD_HOME_PAGE_BANNER_FAILED";
+export const get_home_page_banner_request = "GET_HOME_PAGE_BANNER_REQUEST";
+export const get_home_page_banner_success = "GET_HOME_PAGE_BANNER_SUCCESS";
+export const get_home_page_banner_failed = "GET_HOME_PAGE_BANNER_FAILIED";
